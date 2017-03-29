@@ -37,7 +37,7 @@ DEPLOYMENT_DIRECTORY=./flipit/deploys/$UNIX_TIME
 # The -tt flag will mean that the scripts output will be returned to our console
 #   so we can see if it was successful, otherwise we don't get the console output.
 # The script provided in the heredoc will be executed on the remote server
-ssh $CONNECT_TO -tt <<REMOTE_SCRIPT
+ssh -tt $CONNECT_TO <<REMOTE_SCRIPT
 
 # Make the directory. To learn more type 'man mkdir'.
 # The -p flag tells the system to also create any intermediate directories.
