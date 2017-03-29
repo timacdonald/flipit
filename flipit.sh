@@ -33,10 +33,11 @@ UNIX_TIME=$(date +%s)
 #   later.
 DEPLOYMENT_DIRECTORY=./flipit/deploys/$UNIX_TIME
 
-# Create our server script variable.
-# You'll notice the script is wrapped in double quotes (").
-# Make sure to escape any double quotes (\") in the script.
-SERVER_SCRIPT="
+# SSH into the server
+# The -tt flag will mean that the scripts output will be returned to our console
+#   so we can see if it was successful, otherwise we don't get the console output.
+# The script provided in the heredoc will be executed on the remote server
+ssh $CONNECT_TO -tt <<REMOTE_SCRIPT
 
 # Make the directory. To learn more type 'man mkdir'.
 # The -p flag tells the system to also create any intermediate directories.
@@ -55,10 +56,8 @@ git clone $GIT_REPOSITORY $DEPLOYMENT_DIRECTORY
 #   my head in I ended up with ./public_html/public_html links! Inception!
 # the -f flag tells the system that if a link already exists, remove it and add
 #   this link instead.
-ln -s -n -f $DEPLOYMENT_DIRECTORY/$REPOSITORY_PUBLIC_DIRECTORY_PATH $SERVER_PUBLIC_DIRECTORY_PATH"
+ln -s -n -f $DEPLOYMENT_DIRECTORY/$REPOSITORY_PUBLIC_DIRECTORY_PATH $SERVER_PUBLIC_DIRECTORY_PATH
 
-# SSH into the server
-# The -t flag will mean that the scripts output will be returned to our console
-#   so we can see if it was successful, otherwise we don't get the console output.
-# The server script provided will be executed
-ssh $CONNECT_TO -t $SERVER_SCRIPT
+# Close the connection
+exit
+REMOTE_SCRIPT
