@@ -46,7 +46,7 @@ mkdir -p $DEPLOYMENT_DIRECTORY
 
 # Clone our respository and pass the deployment directory as the destination
 #   in which to store the repository.
-git clone $GIT_REPOSITORY $DEPLOYMENT_DIRECTORY
+git clone --depth 1 $GIT_REPOSITORY $DEPLOYMENT_DIRECTORY
 
 # Make a link...oh I mean FlipIt™
 # The -s flag tells the system to make a [symbolic link](https://en.wikipedia.org/wiki/Symbolic_link). This is important
