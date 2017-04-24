@@ -12,6 +12,10 @@ Git clone the repository onto your local machine and you can run the script from
 git clone https://github.com/timacdonald/flipit.git
 ```
 
+## Versioning
+
+This package uses *Semantic Versioning*. You can find out more about what this is and why it matters by reading [the spec](http://semver.org) or for something more readable, check out [this post](https://laravel-news.com/building-apps-composer).
+
 ## Usage
 
 ```
